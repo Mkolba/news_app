@@ -1,20 +1,17 @@
 part of 'news_bloc.dart';
 
-enum NewsStatus { initial, success, failure }
-
 final class NewsState extends Equatable {
   const NewsState({
-    this.status = NewsStatus.initial,
-    this.news = const <News>[]
+    this.status = RequestStatus.initial,
+    this.news = const <NewsModel>[]
   });
 
-  final NewsStatus status;
-  final List<News> news;
+  final RequestStatus status;
+  final List<NewsModel> news;
 
   NewsState copyWith({
-    NewsStatus? status,
-    List<News>? news,
-    bool? hasReachedMax,
+    RequestStatus? status,
+    List<NewsModel>? news,
   }) {
     return NewsState(
       status: status ?? this.status,

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../models/news.dart';
+import '../../models/news.dart';
+
 
 DateFormat dateFormat = DateFormat("dd.MM.yyyy в HH:MM");
 
 class NewsListItem extends StatelessWidget {
   const NewsListItem({required this.news, super.key});
-  final News news;
+  final NewsModel news;
 
   @override
   Widget build(BuildContext context) {

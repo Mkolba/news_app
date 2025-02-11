@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/news/bloc/news_bloc.dart';
-import 'package:news_app/news/widgets/news_list_item.dart';
+import '../widgets/news_list_item.dart';
+import '../../../core/enums/requests.dart';
 
 class NewsList extends StatelessWidget {
   const NewsList({super.key});
@@ -11,9 +12,9 @@ class NewsList extends StatelessWidget {
     return BlocBuilder<NewsBloc, NewsState>(
       builder: (context, state) {
         switch (state.status) {
-          case NewsStatus.failure:
+          case RequestStatus.failure:
             return const Center(child: Text('Ошибка при получении новостей'));
-          case NewsStatus.success:
+          case RequestStatus.success:
             if (state.news.isEmpty) {
               return const Center(child: Text('Нет новостей'));
             }
@@ -23,7 +24,7 @@ class NewsList extends StatelessWidget {
               },
               itemCount: state.news.length,
             );
-          case NewsStatus.initial:
+          case RequestStatus.initial:
             return const Center(child: CircularProgressIndicator());
         }
       }

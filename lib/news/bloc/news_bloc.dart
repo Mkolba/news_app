@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:news_app/news/data_repository.dart';
+import 'package:news_app/news/data/data_repository.dart';
 import 'package:news_app/news/models/news.dart';
 import 'package:equatable/equatable.dart';
+
+import 'package:news_app/core/enums/requests.dart';
 
 part 'news_event.dart';
 part 'news_state.dart';
@@ -16,12 +18,12 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       final news = await newsRepository.getNews();
       emit(
         state.copyWith(
-          status: NewsStatus.success,
+          status: RequestStatus.success,
           news: news
         )
       );
     } catch (e) {
-      emit(state.copyWith(status: NewsStatus.failure));
+      emit(state.copyWith(status: RequestStatus.failure));
       print(e);
     }
   }
